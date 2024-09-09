@@ -4,6 +4,9 @@
 extern void *** tablero ;
 extern int tamano_global;
 extern int Dificultad_Tablero;
+extern int Arreglo_mano[];
+extern int Pos_mano;
+extern int Turnos;
 
 void inicializarTablero (int tamano ) ;
 void mostrarTablero () ;

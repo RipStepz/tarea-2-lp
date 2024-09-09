@@ -53,7 +53,7 @@ void colocarBarco(int x, int y, int largo, int orientacion, const char *simbolo)
     // Orientación 1: izquierda, 2: derecha, 3: abajo, 4: arriba
     
     int limite;
-    limite = largo - 1 ;
+    limite = largo - 1;
     int * Nueva_Seed; 
     
     for (int i = 0; i < largo; i++) {
@@ -127,7 +127,7 @@ void colocarBarcosAleatoriamente() {
 
     // La posicion en el arreglo "barcos", equivale al barco, en orden de mas chico a grande
     // Con un numero de del 1 al 4 que representa su orientacion siendo
-    // 1 izquierda, 2 derecha , 3 abajo , 4 arriba
+    // 1 izquierda, 2 aderech , 3 abajo , 4 arriba
     
     for (int i = 0; i < Tamaño_Array; i++){
         

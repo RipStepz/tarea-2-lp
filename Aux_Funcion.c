@@ -5,6 +5,8 @@
 
 #include "Tablero.h"
 
+int Turnos;
+
 int* ArregloAleatorio(){
 
     int tamaño;
@@ -54,12 +56,15 @@ int Largo_Arreglo(){
 
 int Retorno_Matriz(){
     if (Dificultad_Tablero == 1){
+        Turnos = 30;
         return 11;
     }
     else if (Dificultad_Tablero == 2){
+        Turnos = 25;
         return 17;
     }
     else{
+        Turnos = 15;
         return 21;
     }   
 }
@@ -98,182 +103,80 @@ int En_Rango(int x, int y){
     }
 }
 
-int* Aux_disparoGrande_x() {
-    int* arreglo_x = (int*)malloc(9 * sizeof(int));
-    arreglo_x[0] = 0;  
-    arreglo_x[1] = 1;  
-    arreglo_x[2] = -1; 
-    arreglo_x[3] = 0;  
-    arreglo_x[4] = 0;  
-    arreglo_x[5] = 1;  
-    arreglo_x[6] = -1; 
-    arreglo_x[7] = 1;  
-    arreglo_x[8] = -1; 
-    return arreglo_x;
-}
-
-int* Aux_disparoGrande_y() {
-    int* arreglo_y = (int*)malloc(9 * sizeof(int));
-    arreglo_y[0] = 0;  
-    arreglo_y[1] = 0;  
-    arreglo_y[2] = 0;  
-    arreglo_y[3] = 1;  
-    arreglo_y[4] = -1; 
-    arreglo_y[5] = -1; 
-    arreglo_y[6] = -1; 
-    arreglo_y[7] = 1;  
-    arreglo_y[8] = 1;  
-    return arreglo_y;
-}
-
-int* Aux_disparoLineal_x(int i) {
-    int* arreglo_x = (int*)malloc(5 * sizeof(int));
-    if (i == 1){
-        arreglo_x[0] = -2;  
-        arreglo_x[1] = -1;  
-        arreglo_x[2] = 0; 
-        arreglo_x[3] = 1; 
-        arreglo_x[4] = 2;  
-        
+int generarCarta_Simple() {
+    
+    int numero_aleatorio;
+    srand(time(NULL));
+    numero_aleatorio = rand() % 100;
+    
+    if (numero_aleatorio < 65) {           // 65% para disparoSimple
+        return 1;
+    } else if (numero_aleatorio < 85) {    // 20% para disparoGrande
+        return 2;
+    } else if (numero_aleatorio < 90) {    // 5% para disparoLineal
+        return 3;
+    } else {                               // 10% para disparoRadar
+        return 4;
     }
-    else{
-        arreglo_x[0] = 0;  
-        arreglo_x[1] = 0;  
-        arreglo_x[2] = 0; 
-        arreglo_x[3] = 0; 
-        arreglo_x[4] = 0; 
-    }
-     
-    return arreglo_x;
 }
 
-int* Aux_disparoLineal_y(int i) {
-    int* arreglo_y = (int*)malloc(5 * sizeof(int));
-     if (i == 1){
-        arreglo_y[0] = 0;  
-        arreglo_y[1] = 0;  
-        arreglo_y[2] = 0; 
-        arreglo_y[3] = 0; 
-        arreglo_y[4] = 0;  
-        
+int generarCarta_Grande() {
+    
+    int numero_aleatorio;
+    srand(time(NULL));
+    numero_aleatorio = rand() % 100;
+    
+    if (numero_aleatorio < 80) {            // 80% para disparoSimple
+        return 1;
+    } else if (numero_aleatorio < 83) {     // 3% para disparoGrande
+        return 2;
+    } else if (numero_aleatorio < 93) {     // 10% para disparoLineal
+        return 3;
+    } else if (numero_aleatorio < 98) {     // 5% para disparoRadar
+        return 4;
+    } else {                                // 2% para disparo500KG
+        return 5;
     }
-    else{
-        arreglo_y[0] = -2;  
-        arreglo_y[1] = -1;  
-        arreglo_y[2] = 0; 
-        arreglo_y[3] = 1; 
-        arreglo_y[4] = 2;
-    }
-    return arreglo_y;
 }
 
-int* Aux_disparoRadar_x() {
-
-    int* arreglo_x = (int*)malloc(25 * sizeof(int));
-
-    arreglo_x[0] = 0;  
-    arreglo_x[1] = 1;  
-    arreglo_x[2] = -1; 
-    arreglo_x[3] = 0;  
-    arreglo_x[4] = 0;  
-    arreglo_x[5] = 1;  
-    arreglo_x[6] = -1; 
-    arreglo_x[7] = 1;  
-    arreglo_x[8] = -1;
-
-    arreglo_x[9] = -2;  
-    arreglo_x[10] = -1;  
-    arreglo_x[11] = 0; 
-    arreglo_x[12] = 1;  
-    arreglo_x[13] = 2;  
+int generarCarta_Lineal() {
     
-    arreglo_x[14] = -2;  
-    arreglo_x[15] = 2; 
+    int numero_aleatorio;
+    srand(time(NULL));
+    numero_aleatorio = rand() % 100;
     
-    arreglo_x[16] = -2;  
-    arreglo_x[17] = 2;
-
-    arreglo_x[18] = -2;  
-    arreglo_x[19] = 2;  
-    
-    arreglo_x[20] = -2;
-    arreglo_x[21] = -1; 
-    arreglo_x[22] = 0;  
-    arreglo_x[23] = 1; 
-    arreglo_x[24] = 2; 
-
-
-
-
-    return arreglo_x;
-     
-}
-
-int* Aux_disparoRadar_y() {
-    int* arreglo_y = (int*)malloc(25 * sizeof(int));
-
-    arreglo_y[0] = 0;  
-    arreglo_y[1] = 0;  
-    arreglo_y[2] = 0;  
-    arreglo_y[3] = 1;  
-    arreglo_y[4] = -1; 
-    arreglo_y[5] = -1; 
-    arreglo_y[6] = -1; 
-    arreglo_y[7] = 1;  
-    arreglo_y[8] = 1;
-
-    arreglo_y[9] = -2;  
-    arreglo_y[10] = -2;  
-    arreglo_y[11] = -2; 
-    arreglo_y[12] = -2;  
-    arreglo_y[13] = -2;  
-    
-    arreglo_y[14] = -1;  
-    arreglo_y[15] = -1; 
-    
-    arreglo_y[16] = 0;  
-    arreglo_y[17] = 0; 
-
-    arreglo_y[18] = 1;  
-    arreglo_y[19] = 1;
-
-    arreglo_y[20] = 2;  
-    arreglo_y[21] = 2; 
-    arreglo_y[22] = 2;  
-    arreglo_y[23] = 2; 
-    arreglo_y[24] = 2; 
-
-    return arreglo_y;
-}
-
-int* Aux_disparo500KG_x() {
-    int* arreglo_x = (int*)malloc(121 * sizeof(int)); // 11x11 = 121 desplazamientos
-    
-    for (int i = 0; i < 121; i++){
-        for (int c = -5; c < 5; c++){
-            arreglo_x[i] = c;
-        }
+    if (numero_aleatorio < 85) {            // 85% para disparoSimple
+        return 1;
+    } else if (numero_aleatorio < 90) {     // 5% para disparoGrande
+        return 2;
+    } else if (numero_aleatorio < 92) {     // 2% para disparoLineal
+        return 3;
+    } else if (numero_aleatorio < 98) {     // 6% para disparoRadar
+        return 4;
+    } else {                                // 2% para disparo500KG
+        return 5;
     }
-     
-    
-
-    
-
-    return arreglo_x;
 }
 
-int* Aux_disparo500KG_y() {
-    int* arreglo_y = (int*)malloc(121 * sizeof(int)); // 11x11 = 121 desplazamientos
-    int altura = - 5;
-
-    for (int i = 0; i < 121; i++){
-        
-        arreglo_y[i] = altura;
-
-        if (i % 11 == 0 ){
-            altura += 1;
-        }      
+int generarCarta_Radar() {
+    int numero_aleatorio;
+    
+    // Inicializar generador de números aleatorios
+    srand(time(NULL));
+    
+    // Generar un número entre 0 y 99
+    numero_aleatorio = rand() % 100;
+    
+    // Asignar una carta según los porcentajes
+    if (numero_aleatorio < 75) {            // 75% para disparoSimple
+        return 1;
+    } else if (numero_aleatorio < 90) {     // 15% para disparoGrande
+        return 2;
+    } else if (numero_aleatorio < 95) {     // 5% para disparoLineal
+        return 3;
+    } else if (numero_aleatorio < 97) {     // 2% para disparoRadar
+        return 4;
+    } else {                                // 3% para disparo500KG
+        return 5;
     }
-
-    return arreglo_y;
 }

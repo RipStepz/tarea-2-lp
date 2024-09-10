@@ -180,3 +180,99 @@ int generarCarta_Radar() {
         return 5;
     }
 }
+
+int En_Rango(int x, int y);
+
+
+
+// int * Anti_colision(int x, int y, int direccion, int largo) {
+    
+//     int* nuevas_coordenadas = (int*)malloc(2 * sizeof(int));  
+//     nuevas_coordenadas[0] = x;
+//     nuevas_coordenadas[1] = y;
+//     srand(time(NULL));
+
+//     int colision = 0;  // Variable para detectar colisiones
+//     int limite = largo - 1;
+
+//     // Verificar si hay colisiones según la dirección
+//     if (direccion == 1) {  // Izquierda
+//         for (int i = 0; i < largo; i++) {
+//             if (En_Rango(x - i, y) && *(char *)tablero[x -i -1][y -1] != ' ') {
+//                 colision = 1;
+//                 break;
+//             }
+//         }
+//     } else if (direccion == 2) {  // Derecha
+//         for (int i = 0; i < largo; i++) {
+//             if (En_Rango(x + i, y) && *(char *)tablero[x + i -1][y -1] != ' ') {
+//                 colision = 1;
+//                 break;
+//             }
+//         }
+//     } else if (direccion == 3) {  // Abajo
+//         for (int i = 0; i < largo; i++) {
+//             if (En_Rango(x, y + i) && *(char *)tablero[x -1][y+  i - 1] != ' ') {
+//                 colision = 1;
+//                 break;
+//             }
+//         }
+//     } else if (direccion == 4) {  // Arriba
+//         for (int i = 0; i < largo; i++) {
+//             if (En_Rango(x, y - i) && *(char *)tablero[x-1][y - i - 1] != ' ') {
+//                 colision = 1;
+//                 break;
+//             }
+//         }
+//     }
+
+//     // Si no hay colisión, retornar las mismas coordenadas
+//     if (!colision) {
+//         return nuevas_coordenadas;  // No hay colisiones, las coordenadas son válidas
+//     }
+
+//     // Si hay colisión, probar con nuevas coordenadas aleatorias hasta que no haya colisiones
+//     while (colision) {
+//         colision = 0;  // Reiniciar el estado de colisión
+
+//         // Generar nuevas coordenadas aleatorias
+//         x = 1 + rand() % tamano_global;
+//         y = 1 + rand() % tamano_global;
+
+//         // Verificar la nueva dirección
+//         if (direccion == 1) {  // Izquierda
+//             for (int i = 0; i < largo; i++) {
+//                 if (En_Rango(x - i, y) && *(char *)tablero[x -i -1][y-1] != ' ') {
+//                     colision = 1;
+//                     break;
+//                 }
+//             }
+//         } else if (direccion == 2) {  // Derecha
+//             for (int i = 0; i < largo; i++) {
+//                 if (En_Rango(x + i, y) && *(char *)tablero[x +i -1][y-1] != ' ') {
+//                     colision = 1;
+//                     break;
+//                 }
+//             }
+//         } else if (direccion == 3) {  // Abajo
+//             for (int i = 0; i < largo; i++) {
+//                 if (En_Rango(x, y + i) && *(char *)tablero[x -i -1][y + i -1] != ' ') {
+//                     colision = 1;
+//                     break;
+//                 }
+//             }
+//         } else if (direccion == 4) {  // Arriba
+//             for (int i = 0; i < largo; i++) {
+//                 if (En_Rango(x, y - i) && *(char *)tablero[x -i -1][y - i -1] != ' ') {
+//                     colision = 1;
+//                     break;
+//                 }
+//             }
+//         }
+//     }
+
+//     // Guardar y devolver las nuevas coordenadas sin colisiones
+//     nuevas_coordenadas[0] = x;
+//     nuevas_coordenadas[1] = y;
+//     return nuevas_coordenadas;
+// }

@@ -54,7 +54,9 @@ void colocarBarco(int x, int y, int largo, int orientacion, char simbolo) {
     
     int limite;
     limite = largo - 1;
-    int * Nueva_Seed; 
+    // int * Nueva_Seed = Anti_colision(x, y, orientacion, largo);
+    // x = Nueva_Seed[0];
+    // y = Nueva_Seed[1];
     
     for (int i = 0; i < largo; i++) {
         
@@ -116,6 +118,7 @@ void colocarBarco(int x, int y, int largo, int orientacion, char simbolo) {
         } 
         }
     }
+    //free(Nueva_Seed);
 }
 
 void colocarBarcosAleatoriamente() {
@@ -130,7 +133,6 @@ void colocarBarcosAleatoriamente() {
     // 1 izquierda, 2 aderech , 3 abajo , 4 arriba
     
     for (int i = 0; i < Tamaño_Array; i++){
-        
         
         if (i<= Rangos[0]){
             int x = 1 + rand() % tamano_global;     // Fila aleatoria entre 1 y n

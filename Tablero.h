@@ -21,5 +21,6 @@ int Largo_Arreglo();
 int Retorno_Matriz();
 int* Rangos_Arreglo();
 int En_Rango(int x, int y);
+int * Anti_colision(int x,int y, int direccion, int largo);
 
 #endif

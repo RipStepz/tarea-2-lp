@@ -145,7 +145,7 @@ void * disparo500KG (int x , int y ){ // 5
 }
 
 void inicializarMano (){
-    Arreglo_mano[0] = 2;
+    Arreglo_mano[0] = 1;
     Arreglo_mano[1] = 1;
     Arreglo_mano[2] = 1;
     Arreglo_mano[3] = 1;
@@ -153,6 +153,8 @@ void inicializarMano (){
 }
 
 void mostrarMano (){
+    
+    printf("Cartas:\n");
     for (int i = 0; i < 5; i++){
         if ((Arreglo_mano[i] == 1) && (i != 4)){
             printf("Simple  |  ");
@@ -188,17 +190,35 @@ void mostrarMano (){
         else if ((Arreglo_mano[i] == 5) && (i == 4)){
             printf("500KG\n");
         }
+        else if ((Arreglo_mano[i] == -1) && (i != 4)){
+            printf("X  |  ");
+        }
+        else if ((Arreglo_mano[i] == -1) && (i == 4)){
+            printf("X\n");
+        }
     }
-    
 }
 
 void usarCarta () {
     
     int indice, x,y;
-    printf("Selecciona una carta :");
+
+    printf("Seleciona una Carta: ");
     scanf("%d", &indice);
     printf("\n");
+
+    
+    while (indice < 1 || indice >5){
+        printf("Carta invalida, seleccione otra: ");
+        scanf("%d", &indice);
+        printf("\n");
+    }
+        
+    
+    
     indice = indice - 1;
+            
+        while (1==1){
             
         if (Arreglo_mano[indice] == 1){
             
@@ -207,12 +227,18 @@ void usarCarta () {
             scanf("%d", &x);  
             printf("Y: ");
             scanf("%d", &y);
-            
+
+            while (!En_Rango(y,x)){
+                printf("Coordenadas fuera de rango, favor ingresar otras\n");
+                printf("X: ");
+                scanf("%d", &x);  
+                printf("Y: ");
+                scanf("%d", &y);
+            }
             Pos_mano = indice;
             
             disparoSimple(y,x);
-
-            
+            break;    
         }
         
         else if (Arreglo_mano[indice] == 2){
@@ -221,9 +247,18 @@ void usarCarta () {
             scanf("%d", &x);  
             printf("Y: ");
             scanf("%d", &y);
+
+            while (!En_Rango(y,x)){
+                printf("Coordenadas fuera de rango, favor ingresar otras\n");
+                printf("X: ");
+                scanf("%d", &x);  
+                printf("Y: ");
+                scanf("%d", &y);
+            }
               
             Pos_mano = indice;
             disparoGrande(y,x);
+            break;
             
         }
 
@@ -233,9 +268,18 @@ void usarCarta () {
             scanf("%d", &x);  
             printf("Y: ");
             scanf("%d", &y);
+
+            while (!En_Rango(y,x)){
+                printf("Coordenadas fuera de rango, favor ingresar otras\n");
+                printf("X: ");
+                scanf("%d", &x);  
+                printf("Y: ");
+                scanf("%d", &y);
+            }
               
             Pos_mano = indice;
             disparoLineal(y,x);
+            break;
             
         }
     
@@ -245,9 +289,18 @@ void usarCarta () {
             scanf("%d", &x);  
             printf("Y: ");
             scanf("%d", &y);
+
+            while (!En_Rango(y,x)){
+                printf("Coordenadas fuera de rango, favor ingresar otras\n");
+                printf("X: ");
+                scanf("%d", &x);  
+                printf("Y: ");
+                scanf("%d", &y);
+            }
               
             Pos_mano = indice;
             disparoRadar(y,x);
+            break;
             
         }
  
@@ -258,9 +311,22 @@ void usarCarta () {
             scanf("%d", &x);  
             printf("Y: ");
             scanf("%d", &y);
+
+            while (!En_Rango(y,x)){
+                printf("Coordenadas fuera de rango, favor ingresar otras\n");
+                printf("X: ");
+                scanf("%d", &x);  
+                printf("Y: ");
+                scanf("%d", &y);
+            }
               
             int Pos_mano = indice;
             disparo500KG(y,x);
+            break;
             
         }
+        else if (Arreglo_mano[indice] == -1){
+            printf("Cañon desabilitado, favor elegir otro\n");
     }
+}
+}

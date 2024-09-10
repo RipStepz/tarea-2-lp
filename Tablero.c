@@ -18,9 +18,9 @@ void inicializarTablero(int tamano) {
         // Para cada fila, reservamos memoria para las columnas y casteamos a void**
         tablero[i] = (void **)malloc(tamano * sizeof(void *));
         for (int j = 0; j < tamano; j++) {
-            // Para cada celda, reservamos memoria para un espacio en blanco y casteamos a void*
-            tablero[i][j] = (void *)malloc(2 * sizeof(char));  // " " más el terminador '\0'
-            strcpy((char *)tablero[i][j], " ");  // Guardamos solo un espacio en blanco
+            // Para cada celda, reservamos memoria para un char
+            tablero[i][j] = malloc(sizeof(char));
+            *(char *)tablero[i][j] = ' ';  // Guardamos un espacio en blanco
         }
     }
 }
@@ -35,21 +35,21 @@ void mostrarTablero() {
     }
 }
 
-void modificarCelda(int x, int y, const char *nuevoContenido) {
+void modificarCelda(int x, int y, char nuevoContenido) {
     // Convertir coordenadas 1-basadas a 0-basadas
-    int fila = y - 1;
-    int columna = x - 1;
+    int fila = x - 1;
+    int columna = y - 1;
 
     // Verifica que los índices estén dentro de los límites del tablero
     if (fila >= 0 && fila < tamano_global && columna >= 0 && columna < tamano_global) {
         // Cambia el contenido de la celda en (fila, columna)
-        strcpy((char *)tablero[fila][columna], nuevoContenido);
+        *(char *)tablero[fila][columna] = nuevoContenido;
     } else {
-        printf("Índices fuera de los límites del tablero, letra en conflicto : %s, Coordenadas (%d , %d) \n", nuevoContenido , x , y);
+        printf("Índices fuera de los límites del tablero, letra en conflicto : %c, Coordenadas (%d , %d) \n", nuevoContenido , x , y);
     }
 }
 
-void colocarBarco(int x, int y, int largo, int orientacion, const char *simbolo) {
+void colocarBarco(int x, int y, int largo, int orientacion, char simbolo) {
     // Orientación 1: izquierda, 2: derecha, 3: abajo, 4: arriba
     
     int limite;
@@ -135,26 +135,26 @@ void colocarBarcosAleatoriamente() {
         if (i<= Rangos[0]){
             int x = 1 + rand() % tamano_global;     // Fila aleatoria entre 1 y n
             int y = 1 + rand() % tamano_global;  // Columna aleatoria entre 1 y n
-            colocarBarco(x, y , 2 , barcos[i] , "B");
+            colocarBarco(x, y , 2 , barcos[i] , 'B');
         }
         else if (Rangos[0] < i && i <= Rangos[1]){
             int x = 1 + rand() % tamano_global;     // Fila aleatoria entre 1 y n
             int y = 1 + rand() % tamano_global;  // Columna aleatoria entre 1 y n
             
-            colocarBarco(x, y , 3 , barcos[i] , "B");
+            colocarBarco(x, y , 3 , barcos[i] , 'B');
             
         }
         else if (Rangos[1]<i && i<= Rangos[2]){
             int x = 1 + rand() % tamano_global;     // Fila aleatoria entre 1 y n
             int y = 1 + rand() % tamano_global;  // Columna aleatoria entre 1 y n
             
-            colocarBarco(x, y , 4 , barcos[i] , "B");
+            colocarBarco(x, y , 4 , barcos[i] , 'B');
         }
         else if (Rangos[2] < i && i<= Rangos[3]){
 
             int x = 1 + rand() % tamano_global;     // Fila aleatoria entre 1 y n
             int y = 1 + rand() % tamano_global;  // Columna aleatoria entre 1 y n
-            colocarBarco(x, y , 5 , barcos[i] , "B");
+            colocarBarco(x, y , 5 , barcos[i] , 'B');
         }          
     }  
     free(barcos);

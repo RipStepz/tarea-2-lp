@@ -14,29 +14,21 @@ int main(){
     printf("1. Facil  -> 11 X 11 , 5 Barcos\n");
     printf("2. Medio  -> 17 X 17 , 7 Barcos\n");
     printf("3. Dificil -> 21 X 21 , 9 Barcos\n");
-    printf("Ingrese numero: ");
+    printf("Ingrese un numero: \n");
     scanf("%d", &Dificultad_Tablero); // Lee un entero y lo guarda en la variable 'numero'
     
     inicializarTablero (Retorno_Matriz());
     inicializarMano();
     colocarBarcosAleatoriamente();
+
+    for (int i = 1; i <= Turnos; i++){
+       printf("Turno %d\n", i);
+       mostrarTablero();
+       mostrarMano();
+       usarCarta();
+    }
     mostrarTablero();
-    mostrarMano();
     liberarTablero(tamano_global);
-    
-    // strcpy((char *)tablero[1][2], "X");  // Copiamos "X" en la celda (1,2)
-    // char *i = (char *)tablero[1][2];  // Convertimos el puntero a char*
-    
-    // if (strcmp(i, "X") == 0){
-    // printf("En (1,2) esta el caracter : %s \n", (char *)tablero[1][2]);
-    // }
-    // int x,y;
-
-    // printf("Introduzca dos numeros ");
-    // scanf("%d %d", &x , &y);
-    // printf("Introduzca dos numeros\n\n ");
-
-
     
     return 0;
 }

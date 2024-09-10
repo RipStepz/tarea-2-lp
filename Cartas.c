@@ -15,14 +15,16 @@ void * disparoSimple (int x , int y ){ // 1
         printf("Coordenadas fuera de rango");
     }
     
-    char *i = (char *)tablero[x-1][y-1];
-    if (strcmp(i, "B") == 0){
-        modificarCelda(x, y, "X");
+    printf("Letra encontrada_ %c\n", *(char *)tablero[x-1][y-1]);
+
+    if (*(char *)tablero[x-1][y-1] == ' ' || *(char *)tablero[x-1][y-1] == 'O' ){
+        modificarCelda(x, y, 'O');
     }
     else{
-        modificarCelda(x, y, "O");
+        modificarCelda(x, y, 'X');
     }
    
+    
     Arreglo_mano[Pos_mano] = generarCarta_Simple(); 
 }
 
@@ -33,16 +35,18 @@ void *disparoGrande(int x, int y) { // 2
 
     int* Mov_x = Aux_disparoGrande_x();
     int* Mov_y = Aux_disparoGrande_y();
-    char *c = (char *)tablero[x-1][y-1];
 
     for (int i = 0; i < 9; i++) {
         
-        if (En_Rango(x + Mov_x[i], y + Mov_y[i])) {
-            c = (char*)tablero[x + Mov_x[i] -1][y + Mov_y[i] -1];
-            if (strcmp(c, "B") == 0) {
-                modificarCelda(x + Mov_x[i], y + Mov_y[i], "X");
-            } else {
-                modificarCelda(x + Mov_x[i], y + Mov_y[i], "O");
+        //printf("%d\n", En_Rango(x,y));
+        if (En_Rango(x + Mov_y[i], y + Mov_x[i])) {
+
+            if (*(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == ' ' || *(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == 'O' ){
+                modificarCelda(x + Mov_y[i], y + Mov_x[i], 'O');
+             }
+            else{
+                printf("Entro Else\n");
+                modificarCelda(x + Mov_y[i], y + Mov_x[i], 'X');
             }
         }
     }
@@ -66,16 +70,17 @@ void * disparoLineal (int x , int y ){ // 3
     
     int * Mov_x = Aux_disparoLineal_x(Direccion);         
     int * Mov_y = Aux_disparoLineal_y(Direccion);  
-    char *c = (char *)tablero[x-1][y-1];
     
     for (int i = 0; i < 9; i++) {
         
-        if (En_Rango(x + Mov_x[i], y + Mov_y[i])) {
-            c = (char*)tablero[x + Mov_x[i] -1][y + Mov_y[i] -1];
-            if (strcmp(c, "B") == 0) {
-                modificarCelda(x + Mov_x[i], y + Mov_y[i], "X");
-            } else {
-                modificarCelda(x + Mov_x[i], y + Mov_y[i], "O");
+        if (En_Rango(x + Mov_y[i], y + Mov_x[i])) {
+
+            if (*(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == ' ' || *(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == 'O' ){
+                modificarCelda(x + Mov_y[i], y + Mov_x[i], 'O');
+             }
+            else{
+                printf("Entro Else\n");
+                modificarCelda(x + Mov_y[i], y + Mov_x[i], 'X');
             }
         }
     }
@@ -92,16 +97,17 @@ void * disparoRadar (int x , int y ){ // 4
 
     int* Mov_x = Aux_disparoRadar_x();
     int* Mov_y = Aux_disparoRadar_y();
-    char *c = (char *)tablero[x-1][y-1];
 
     for (int i = 0; i < 25; i++) {
         
-        if (En_Rango(x + Mov_x[i], y + Mov_y[i])) {
-            c = (char*)tablero[x + Mov_x[i] -1][y + Mov_y[i] -1];
-            if (strcmp(c, "B") == 0) {
-                modificarCelda(x + Mov_x[i], y + Mov_y[i], "E");
-            } else {
-                modificarCelda(x + Mov_x[i], y + Mov_y[i], "O");
+        if (En_Rango(x + Mov_y[i], y + Mov_x[i])) {
+
+            if (*(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == ' ' || *(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == 'O' ){
+                modificarCelda(x + Mov_y[i], y + Mov_x[i], 'O');
+             }
+            else{
+                printf("Entro Else\n");
+                modificarCelda(x + Mov_y[i], y + Mov_x[i], 'E');
             }
         }
     }
@@ -122,12 +128,14 @@ void * disparo500KG (int x , int y ){ // 5
 
     for (int i = 0; i < 121; i++) {
         
-        if (En_Rango(x + Mov_x[i], y + Mov_y[i])) {
-            c = (char*)tablero[x + Mov_x[i] -1][y + Mov_y[i] -1];
-            if (strcmp(c, "B") == 0) {
-                modificarCelda(x + Mov_x[i], y + Mov_y[i], "X");
-            } else {
-                modificarCelda(x + Mov_x[i], y + Mov_y[i], "O");
+        if (En_Rango(x + Mov_y[i], y + Mov_x[i])) {
+
+            if (*(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == ' ' || *(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == 'O' ){
+                modificarCelda(x + Mov_y[i], y + Mov_x[i], 'O');
+             }
+            else{
+                printf("Entro Else\n");
+                modificarCelda(x + Mov_y[i], y + Mov_x[i], 'X');
             }
         }
     }
@@ -137,7 +145,7 @@ void * disparo500KG (int x , int y ){ // 5
 }
 
 void inicializarMano (){
-    Arreglo_mano[0] = 1;
+    Arreglo_mano[0] = 2;
     Arreglo_mano[1] = 1;
     Arreglo_mano[2] = 1;
     Arreglo_mano[3] = 1;
@@ -153,28 +161,28 @@ void mostrarMano (){
             printf("Simple\n");
         }
 
-        else if ((Arreglo_mano[i] == 2) && (i == 4)){
+        else if ((Arreglo_mano[i] == 2) && (i != 4)){
             printf("Grande  |  ");
         }
         else if ((Arreglo_mano[i] == 2) && (i == 4)){
             printf("Grande\n");
         }
 
-        else if ((Arreglo_mano[i] == 3) && (i == 4)){
+        else if ((Arreglo_mano[i] == 3) && (i != 4)){
             printf("Lineal  |  ");
         }
         else if ((Arreglo_mano[i] == 3) && (i == 4)){
             printf("Linal\n");
         }
 
-        else if ((Arreglo_mano[i] == 4) && (i == 4)){
+        else if ((Arreglo_mano[i] == 4) && (i !=4)){
             printf("Radar |  ");
         }
         else if ((Arreglo_mano[i] == 4) && (i == 4)){
             printf("Radar\n");
         }
 
-        else if ((Arreglo_mano[i] == 5) && (i == 4)){
+        else if ((Arreglo_mano[i] == 5) && (i != 4)){
             printf("500KG  |  ");
         }
         else if ((Arreglo_mano[i] == 5) && (i == 4)){
@@ -186,10 +194,13 @@ void mostrarMano (){
 
 void usarCarta () {
     
-    int x,y;
-    for (int i = 0; i < 5; i++){
-        
-        if (Arreglo_mano[i] == 1){
+    int indice, x,y;
+    printf("Selecciona una carta :");
+    scanf("%d", &indice);
+    printf("\n");
+    indice = indice - 1;
+            
+        if (Arreglo_mano[indice] == 1){
             
             printf("Selecciona Coordenadas\n");
             printf("X: ");
@@ -197,60 +208,59 @@ void usarCarta () {
             printf("Y: ");
             scanf("%d", &y);
             
-            int Pos_mano = i;
-            disparoSimple(x,y);
+            Pos_mano = indice;
+            
+            disparoSimple(y,x);
 
-            break;
+            
         }
         
-        else if (Arreglo_mano[i] == 2){
+        else if (Arreglo_mano[indice] == 2){
             printf("Selecciona Coordenadas\n");
             printf("X: ");
             scanf("%d", &x);  
             printf("Y: ");
             scanf("%d", &y);
               
-            int Pos_mano = i;
-            disparoGrande(x,y);
-            break;
+            Pos_mano = indice;
+            disparoGrande(y,x);
+            
         }
 
-        else if (Arreglo_mano[i] == 3){
+        else if (Arreglo_mano[indice] == 3){
             printf("Selecciona Coordenadas\n");
             printf("X: ");
             scanf("%d", &x);  
             printf("Y: ");
             scanf("%d", &y);
               
-            int Pos_mano = i;
-            disparoLineal(x,y);
-            break;
+            Pos_mano = indice;
+            disparoLineal(y,x);
+            
         }
     
-        else if (Arreglo_mano[i] == 4){
+        else if (Arreglo_mano[indice] == 4){
             printf("Selecciona Coordenadas\n");
             printf("X: ");
             scanf("%d", &x);  
             printf("Y: ");
             scanf("%d", &y);
               
-            int Pos_mano = i;
-            disparoRadar(x,y);
-            break;
+            Pos_mano = indice;
+            disparoRadar(y,x);
+            
         }
  
 
-        else if (Arreglo_mano[i] == 5){
+        else if (Arreglo_mano[indice] == 5){
             printf("Selecciona Coordenadas\n");
             printf("X: ");
             scanf("%d", &x);  
             printf("Y: ");
             scanf("%d", &y);
               
-            int Pos_mano = i;
-            disparo500KG(x,y);
-            break;
+            int Pos_mano = indice;
+            disparo500KG(y,x);
+            
         }
-
     }
-}

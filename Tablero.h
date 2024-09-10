@@ -11,9 +11,9 @@ extern int Turnos;
 void inicializarTablero (int tamano ) ;
 void mostrarTablero () ;
 void liberarTablero();
-void modificarCelda(int fila, int columna, const char *nuevoContenido);
+void modificarCelda(int x, int y, char nuevoContenido);
 
-void colocarBarco(int x, int y, int largo, int orientacion, const char *simbolo);
+void colocarBarco(int x, int y, int largo, int orientacion, char simbolo);
 void colocarBarcosAleatoriamente();
 
 int * ArregloAleatorio();

@@ -6,30 +6,30 @@
 #include "Cartas.h"
 
 int* Aux_disparoGrande_x() {
-    int* arreglo_x = (int*)malloc(9 * sizeof(int));
-    arreglo_x[0] = 0;  
-    arreglo_x[1] = 1;  
-    arreglo_x[2] = -1; 
-    arreglo_x[3] = 0;  
-    arreglo_x[4] = 0;  
-    arreglo_x[5] = 1;  
-    arreglo_x[6] = -1; 
-    arreglo_x[7] = 1;  
-    arreglo_x[8] = -1; 
+    int* arreglo_x = (int*)malloc(9 * sizeof(int)); // 9 porque 3x3 es 9 coordenadas
+    int index = 0;
+    int rango = 1; // El rango de x va de -1 a 1
+
+    for (int y = -rango; y <= rango; y++) {
+        for (int x = -rango; x <= rango; x++) {
+            arreglo_x[index++] = x;
+        }
+    }
+
     return arreglo_x;
 }
 
 int* Aux_disparoGrande_y() {
-    int* arreglo_y = (int*)malloc(9 * sizeof(int));
-    arreglo_y[0] = 0;  
-    arreglo_y[1] = 0;  
-    arreglo_y[2] = 0;  
-    arreglo_y[3] = 1;  
-    arreglo_y[4] = -1; 
-    arreglo_y[5] = -1; 
-    arreglo_y[6] = -1; 
-    arreglo_y[7] = 1;  
-    arreglo_y[8] = 1;  
+   int* arreglo_y = (int*)malloc(9 * sizeof(int)); // 9 porque 3x3 es 9 coordenadas
+    int index = 0;
+    int rango = 1; // El rango de y va de -1 a 1
+
+    for (int y = -rango; y <= rango; y++) {
+        for (int x = -rango; x <= rango; x++) {
+            arreglo_y[index++] = y;
+        }
+    }
+
     return arreglo_y;
 }
 
@@ -76,79 +76,30 @@ int* Aux_disparoLineal_y(int i) {
 
 int* Aux_disparoRadar_x() {
 
-    int* arreglo_x = (int*)malloc(25 * sizeof(int));
+    int* arreglo_x = (int*)malloc(25 * sizeof(int)); // 25 porque 5x5 es 25 coordenadas
+    int index = 0;
+    int rango = 2; // El rango de x va de -2 a 2
 
-    arreglo_x[0] = 0;  
-    arreglo_x[1] = 1;  
-    arreglo_x[2] = -1; 
-    arreglo_x[3] = 0;  
-    arreglo_x[4] = 0;  
-    arreglo_x[5] = 1;  
-    arreglo_x[6] = -1; 
-    arreglo_x[7] = 1;  
-    arreglo_x[8] = -1;
-
-    arreglo_x[9] = -2;  
-    arreglo_x[10] = -1;  
-    arreglo_x[11] = 0; 
-    arreglo_x[12] = 1;  
-    arreglo_x[13] = 2;  
-    
-    arreglo_x[14] = -2;  
-    arreglo_x[15] = 2; 
-    
-    arreglo_x[16] = -2;  
-    arreglo_x[17] = 2;
-
-    arreglo_x[18] = -2;  
-    arreglo_x[19] = 2;  
-    
-    arreglo_x[20] = -2;
-    arreglo_x[21] = -1; 
-    arreglo_x[22] = 0;  
-    arreglo_x[23] = 1; 
-    arreglo_x[24] = 2; 
-
-
-
+    for (int y = -rango; y <= rango; y++) {
+        for (int x = -rango; x <= rango; x++) {
+            arreglo_x[index++] = x;
+        }
+    }
 
     return arreglo_x;
      
 }
 
 int* Aux_disparoRadar_y() {
-    int* arreglo_y = (int*)malloc(25 * sizeof(int));
+    int* arreglo_y = (int*)malloc(25 * sizeof(int)); // 25 porque 5x5 es 25 coordenadas
+    int index = 0;
+    int rango = 2; // El rango de y va de -2 a 2
 
-    arreglo_y[0] = 0;  
-    arreglo_y[1] = 0;  
-    arreglo_y[2] = 0;  
-    arreglo_y[3] = 1;  
-    arreglo_y[4] = -1; 
-    arreglo_y[5] = -1; 
-    arreglo_y[6] = -1; 
-    arreglo_y[7] = 1;  
-    arreglo_y[8] = 1;
-
-    arreglo_y[9] = -2;  
-    arreglo_y[10] = -2;  
-    arreglo_y[11] = -2; 
-    arreglo_y[12] = -2;  
-    arreglo_y[13] = -2;  
-    
-    arreglo_y[14] = -1;  
-    arreglo_y[15] = -1; 
-    
-    arreglo_y[16] = 0;  
-    arreglo_y[17] = 0; 
-
-    arreglo_y[18] = 1;  
-    arreglo_y[19] = 1;
-
-    arreglo_y[20] = 2;  
-    arreglo_y[21] = 2; 
-    arreglo_y[22] = 2;  
-    arreglo_y[23] = 2; 
-    arreglo_y[24] = 2; 
+    for (int y = -rango; y <= rango; y++) {
+        for (int x = -rango; x <= rango; x++) {
+            arreglo_y[index++] = y;
+        }
+    }
 
     return arreglo_y;
 }

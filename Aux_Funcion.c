@@ -57,17 +57,15 @@ int Largo_Arreglo(){
 int Retorno_Matriz(){
     if (Dificultad_Tablero == 1){
         Turnos = 30;
-        Total_Barcos = 5; 
         return 11;
     }
     else if (Dificultad_Tablero == 2){
         Turnos = 25;
-        Total_Barcos = 7; 
+        
         return 17;
     }
     else{
         Turnos = 15;
-        Total_Barcos = 9; 
         return 21;
     }   
 }
@@ -106,63 +104,81 @@ int En_Rango(int x, int y){
     }
 }
 
-int generarCarta_Simple() {
+int *generarCarta_Simple() {
     
     int numero_aleatorio;
+    int *retorno = malloc(sizeof(int));
     srand(time(NULL));
     numero_aleatorio = rand() % 100;
     
     if (numero_aleatorio < 65) {           // 65% para disparoSimple
-        return 1;
+        *retorno = 1;
+        return retorno;
     } else if (numero_aleatorio < 85) {    // 20% para disparoGrande
-        return 2;
+        *retorno = 2;
+        return retorno;
     } else if (numero_aleatorio < 90) {    // 5% para disparoLineal
-        return 3;
+        *retorno = 3;
+        return retorno;
     } else {                               // 10% para disparoRadar
-        return 4;
+        *retorno = 4;
+        return retorno;
     }
 }
 
-int generarCarta_Grande() {
+int *generarCarta_Grande() {
     
     int numero_aleatorio;
+    int *retorno = malloc(sizeof(int));
     srand(time(NULL));
     numero_aleatorio = rand() % 100;
     
     if (numero_aleatorio < 80) {            // 80% para disparoSimple
-        return 1;
+        *retorno = 1;
+        return retorno;
     } else if (numero_aleatorio < 83) {     // 3% para disparoGrande
-        return 2;
+        *retorno = 2;
+        return retorno;;
     } else if (numero_aleatorio < 93) {     // 10% para disparoLineal
-        return 3;
+        *retorno = 3;
+        return retorno;
     } else if (numero_aleatorio < 98) {     // 5% para disparoRadar
-        return 4;
+        *retorno = 4;
+        return retorno;
     } else {                                // 2% para disparo500KG
-        return 5;
+        *retorno = 5;
+        return retorno;
     }
 }
 
-int generarCarta_Lineal() {
+int *generarCarta_Lineal() {
     
     int numero_aleatorio;
+    int *retorno = malloc(sizeof(int));
     srand(time(NULL));
     numero_aleatorio = rand() % 100;
     
     if (numero_aleatorio < 85) {            // 85% para disparoSimple
-        return 1;
+        *retorno = 1;
+        return retorno;
     } else if (numero_aleatorio < 90) {     // 5% para disparoGrande
-        return 2;
+        *retorno = 2;
+        return retorno;
     } else if (numero_aleatorio < 92) {     // 2% para disparoLineal
-        return 3;
+        *retorno = 3;
+        return retorno;
     } else if (numero_aleatorio < 98) {     // 6% para disparoRadar
-        return 4;
+        *retorno = 4;
+        return retorno;
     } else {                                // 2% para disparo500KG
-        return 5;
+        *retorno = 5;
+        return retorno;
     }
 }
 
-int generarCarta_Radar() {
+int *generarCarta_Radar() {
     int numero_aleatorio;
+    int *retorno = malloc(sizeof(int));
     
     // Inicializar generador de números aleatorios
     srand(time(NULL));
@@ -172,110 +188,19 @@ int generarCarta_Radar() {
     
     // Asignar una carta según los porcentajes
     if (numero_aleatorio < 75) {            // 75% para disparoSimple
-        return 1;
+        *retorno = 1;
+        return retorno;
     } else if (numero_aleatorio < 90) {     // 15% para disparoGrande
-        return 2;
+        *retorno = 2;
+        return retorno;
     } else if (numero_aleatorio < 95) {     // 5% para disparoLineal
-        return 3;
+        *retorno = 3;
+        return retorno;
     } else if (numero_aleatorio < 97) {     // 2% para disparoRadar
-        return 4;
+        *retorno = 4;
+        return retorno;
     } else {                                // 3% para disparo500KG
-        return 5;
+        *retorno = 5;
+        return retorno;
     }
 }
-
-int En_Rango(int x, int y);
-
-
-
-// int * Anti_colision(int x, int y, int direccion, int largo) {
-    
-//     int* nuevas_coordenadas = (int*)malloc(2 * sizeof(int));  
-//     nuevas_coordenadas[0] = x;
-//     nuevas_coordenadas[1] = y;
-//     srand(time(NULL));
-
-//     int colision = 0;  // Variable para detectar colisiones
-//     int limite = largo - 1;
-
-//     // Verificar si hay colisiones según la dirección
-//     if (direccion == 1) {  // Izquierda
-//         for (int i = 0; i < largo; i++) {
-//             if (En_Rango(x - i, y) && *(char *)tablero[x -i -1][y -1] != ' ') {
-//                 colision = 1;
-//                 break;
-//             }
-//         }
-//     } else if (direccion == 2) {  // Derecha
-//         for (int i = 0; i < largo; i++) {
-//             if (En_Rango(x + i, y) && *(char *)tablero[x + i -1][y -1] != ' ') {
-//                 colision = 1;
-//                 break;
-//             }
-//         }
-//     } else if (direccion == 3) {  // Abajo
-//         for (int i = 0; i < largo; i++) {
-//             if (En_Rango(x, y + i) && *(char *)tablero[x -1][y+  i - 1] != ' ') {
-//                 colision = 1;
-//                 break;
-//             }
-//         }
-//     } else if (direccion == 4) {  // Arriba
-//         for (int i = 0; i < largo; i++) {
-//             if (En_Rango(x, y - i) && *(char *)tablero[x-1][y - i - 1] != ' ') {
-//                 colision = 1;
-//                 break;
-//             }
-//         }
-//     }
-
-//     // Si no hay colisión, retornar las mismas coordenadas
-//     if (!colision) {
-//         return nuevas_coordenadas;  // No hay colisiones, las coordenadas son válidas
-//     }
-
-//     // Si hay colisión, probar con nuevas coordenadas aleatorias hasta que no haya colisiones
-//     while (colision) {
-//         colision = 0;  // Reiniciar el estado de colisión
-
-//         // Generar nuevas coordenadas aleatorias
-//         x = 1 + rand() % tamano_global;
-//         y = 1 + rand() % tamano_global;
-
-//         // Verificar la nueva dirección
-//         if (direccion == 1) {  // Izquierda
-//             for (int i = 0; i < largo; i++) {
-//                 if (En_Rango(x - i, y) && *(char *)tablero[x -i -1][y-1] != ' ') {
-//                     colision = 1;
-//                     break;
-//                 }
-//             }
-//         } else if (direccion == 2) {  // Derecha
-//             for (int i = 0; i < largo; i++) {
-//                 if (En_Rango(x + i, y) && *(char *)tablero[x +i -1][y-1] != ' ') {
-//                     colision = 1;
-//                     break;
-//                 }
-//             }
-//         } else if (direccion == 3) {  // Abajo
-//             for (int i = 0; i < largo; i++) {
-//                 if (En_Rango(x, y + i) && *(char *)tablero[x -i -1][y + i -1] != ' ') {
-//                     colision = 1;
-//                     break;
-//                 }
-//             }
-//         } else if (direccion == 4) {  // Arriba
-//             for (int i = 0; i < largo; i++) {
-//                 if (En_Rango(x, y - i) && *(char *)tablero[x -i -1][y - i -1] != ' ') {
-//                     colision = 1;
-//                     break;
-//                 }
-//             }
-//         }
-//     }
-
-//     // Guardar y devolver las nuevas coordenadas sin colisiones
-//     nuevas_coordenadas[0] = x;
-//     nuevas_coordenadas[1] = y;
-//     return nuevas_coordenadas;
-// }

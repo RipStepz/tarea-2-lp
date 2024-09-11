@@ -15,18 +15,20 @@ void * disparoSimple (int x , int y ){ // 1
     if (x < 1 || x > tamano_global || y < 1 || y > tamano_global ){
         printf("Coordenadas fuera de rango");
     }
-    
-    printf("Letra encontrada_ %c\n", *(char *)tablero[x-1][y-1]);
 
     if (*(char *)tablero[x-1][y-1] == ' ' || *(char *)tablero[x-1][y-1] == 'O' ){
         modificarCelda(x, y, 'O');
     }
+    else if(*(char *)tablero[x -1][y -1] == 'X'){
+                
+    }
     else{
+        Total_Barcos -= 1;
         modificarCelda(x, y, 'X');
     }
    
     
-    Arreglo_mano[Pos_mano] = generarCarta_Simple(); 
+    return generarCarta_Simple(); 
 }
 
 void *disparoGrande(int x, int y) { // 2
@@ -45,16 +47,19 @@ void *disparoGrande(int x, int y) { // 2
             if (*(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == ' ' || *(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == 'O' ){
                 modificarCelda(x + Mov_y[i], y + Mov_x[i], 'O');
              }
+            else if(*(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == 'X'){
+
+            }
             else{
-                printf("Entro Else\n");
+                Total_Barcos -= 1;
                 modificarCelda(x + Mov_y[i], y + Mov_x[i], 'X');
             }
         }
     }
 
-    Arreglo_mano[Pos_mano] = generarCarta_Grande(); 
     free(Mov_x);
     free(Mov_y);
+    return generarCarta_Grande();    
 }
 
 void * disparoLineal (int x , int y ){ // 3
@@ -78,17 +83,20 @@ void * disparoLineal (int x , int y ){ // 3
 
             if (*(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == ' ' || *(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == 'O' ){
                 modificarCelda(x + Mov_y[i], y + Mov_x[i], 'O');
-             }
+            }
+            else if(*(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == 'X'){
+                
+            }
             else{
-                printf("Entro Else\n");
+                Total_Barcos -= 1;
                 modificarCelda(x + Mov_y[i], y + Mov_x[i], 'X');
             }
         }
     }
     
-    Arreglo_mano[Pos_mano] = generarCarta_Lineal(); 
     free(Mov_x);
     free(Mov_y); 
+    return generarCarta_Lineal(); 
 }
 
 void * disparoRadar (int x , int y ){ // 4
@@ -106,16 +114,18 @@ void * disparoRadar (int x , int y ){ // 4
             if (*(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == ' ' || *(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == 'O' ){
                 modificarCelda(x + Mov_y[i], y + Mov_x[i], 'O');
              }
+            else if(*(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == 'X'){
+
+            }
             else{
-                printf("Entro Else\n");
                 modificarCelda(x + Mov_y[i], y + Mov_x[i], 'E');
             }
         }
     }
 
-    Arreglo_mano[Pos_mano] = generarCarta_Radar(); 
     free(Mov_x);
     free(Mov_y);
+    return generarCarta_Radar(); 
 }
 
 void * disparo500KG (int x , int y ){ // 5
@@ -125,7 +135,6 @@ void * disparo500KG (int x , int y ){ // 5
 
     int* Mov_x = Aux_disparo500KG_x();
     int* Mov_y = Aux_disparo500KG_y();
-    char *c = (char *)tablero[x-1][y-1];
 
     for (int i = 0; i < 121; i++) {
         
@@ -134,15 +143,20 @@ void * disparo500KG (int x , int y ){ // 5
             if (*(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == ' ' || *(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == 'O' ){
                 modificarCelda(x + Mov_y[i], y + Mov_x[i], 'O');
              }
+            else if(*(char *)tablero[x + Mov_y[i]-1][y+ Mov_x[i]-1] == 'X'){
+                
+            }
             else{
-                printf("Entro Else\n");
+                Total_Barcos -= 1;
                 modificarCelda(x + Mov_y[i], y + Mov_x[i], 'X');
             }
         }
     }
-    Arreglo_mano[Pos_mano] = -1;
+    int *Romper_Canon= malloc(sizeof(int));
+    *Romper_Canon=-1;
     free(Mov_x);
     free(Mov_y);
+    return Romper_Canon;
 }
 
 void inicializarMano (){
@@ -208,14 +222,11 @@ void usarCarta () {
     scanf("%d", &indice);
     printf("\n");
 
-    
     while (indice < 1 || indice >5){
         printf("Carta invalida, seleccione otra: ");
         scanf("%d", &indice);
         printf("\n");
     }
-        
-    
     
     indice = indice - 1;
             
@@ -237,8 +248,11 @@ void usarCarta () {
                 scanf("%d", &y);
             }
             Pos_mano = indice;
-            
-            disparoSimple(y,x);
+
+            void *resultado = disparoSimple(y, x);
+            int *Nueva_Carta = (int *)resultado;
+            Arreglo_mano[Pos_mano] = *Nueva_Carta;
+            free(resultado);  
             break;    
         }
         
@@ -258,7 +272,11 @@ void usarCarta () {
             }
               
             Pos_mano = indice;
-            disparoGrande(y,x);
+            
+            void *resultado = disparoGrande(y, x);
+            int *Nueva_Carta = (int *)resultado;
+            Arreglo_mano[Pos_mano] = *Nueva_Carta;
+            free(resultado); 
             break;
             
         }
@@ -279,7 +297,11 @@ void usarCarta () {
             }
               
             Pos_mano = indice;
-            disparoLineal(y,x);
+
+            void *resultado = disparoLineal(y, x);
+            int *Nueva_Carta = (int *)resultado;
+            Arreglo_mano[Pos_mano] = *Nueva_Carta;
+            free(resultado); 
             break;
             
         }
@@ -300,7 +322,11 @@ void usarCarta () {
             }
               
             Pos_mano = indice;
-            disparoRadar(y,x);
+
+            void *resultado = disparoRadar(y, x);
+            int *Nueva_Carta = (int *)resultado;
+            Arreglo_mano[Pos_mano] = *Nueva_Carta;
+            free(resultado); 
             break;
             
         }
@@ -322,7 +348,11 @@ void usarCarta () {
             }
               
             int Pos_mano = indice;
-            disparo500KG(y,x);
+
+            void *resultado = disparo500KG(y, x);
+            int *Nueva_Carta = (int *)resultado;
+            Arreglo_mano[Pos_mano] = *Nueva_Carta;
+            free(resultado); 
             break;
             
         }

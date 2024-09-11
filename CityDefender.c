@@ -30,9 +30,11 @@ int main(){
 
     for (int i = 1; i <= Turnos; i++){
         printf("Turno %d\n", i);
+        mostrarTablero();
         mostrarTableroOculto();
-        mostrarMano();
+        //mostrarMano();
         usarCarta();
+        printf("Quedan %d barcos \n", Total_Barcos);
         if (Total_Barcos == 0){
             printf("Ganaste, has hundido todos los barcos\n");
             mostrarTablero();
@@ -40,16 +42,10 @@ int main(){
         } 
     }
 
-    mostrarTablero();
+    if (Total_Barcos !=0){
+        printf("Perdiste\n");
+        mostrarTablero();
+    }
     liberarTablero(tamano_global);
-
-        // inicializarTablero (Retorno_Matriz());
-        // colocarBarcosAleatoriamente();
-        // mostrarTablero();
-        // printf("\n");
-        // mostrarTableroOculto();
-        // printf("\n");
-        // liberarTablero(tamano_global);
-    
     return 0;
 }

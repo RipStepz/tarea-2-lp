@@ -29,9 +29,9 @@ int* Aux_disparoRadar_y();
 int* Aux_disparo500KG_x();
 int* Aux_disparo500KG_y();
 
-int generarCarta_Simple();
-int generarCarta_Grande();
-int generarCarta_Lineal();
-int generarCarta_Radar();
+int *generarCarta_Simple();
+int *generarCarta_Grande();
+int *generarCarta_Lineal();
+int *generarCarta_Radar();
 
 #endif

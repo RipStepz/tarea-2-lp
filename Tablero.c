@@ -91,11 +91,14 @@ void colocarBarco(int x, int y, int largo, int orientacion, char simbolo) {
 
     // Una vez verificado el espacio, colocamos el barco
     for (int i = 0; i < largo; i++) {
+
+        Total_Barcos ++;
         if (orientacion == 1) modificarCelda(x - i, y, simbolo);       // Izquierda
         else if (orientacion == 2) modificarCelda(x + i, y, simbolo);  // Derecha
         else if (orientacion == 3) modificarCelda(x, y + i, simbolo);  // Abajo
         else if (orientacion == 4) modificarCelda(x, y - i, simbolo);  // Arriba
     }
+    printf("barcos totales %d\n", Total_Barcos);
 }
 
 void colocarBarcosAleatoriamente() {

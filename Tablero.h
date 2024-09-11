@@ -7,6 +7,7 @@ extern int Dificultad_Tablero;
 extern int Arreglo_mano[];
 extern int Pos_mano;
 extern int Turnos;
+extern int Total_Barcos;
 
 void inicializarTablero (int tamano ) ;
 void mostrarTablero () ;
@@ -21,6 +22,6 @@ int Largo_Arreglo();
 int Retorno_Matriz();
 int* Rangos_Arreglo();
 int En_Rango(int x, int y);
-int * Anti_colision(int x,int y, int direccion, int largo);
+void mostrarTableroOculto();
 
 #endif

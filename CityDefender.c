@@ -24,25 +24,32 @@ int main(){
     }
     
     
-    //inicializarTablero (Retorno_Matriz());
-    // inicializarMano();
-    // colocarBarcosAleatoriamente();
+    inicializarTablero (Retorno_Matriz());
+    inicializarMano();
+    colocarBarcosAleatoriamente();
 
-    // for (int i = 1; i <= Turnos; i++){
-    //    printf("Turno %d\n", i);
-    //    mostrarTablero();
-    //    mostrarMano();
-    //    usarCarta();
-    // }
-    // mostrarTablero();
-    // liberarTablero(tamano_global);
-    
-   
-        inicializarTablero (Retorno_Matriz());
-        colocarBarcosAleatoriamente();
-        mostrarTablero();
-        printf("\n");
-        liberarTablero(tamano_global);
+    for (int i = 1; i <= Turnos; i++){
+        printf("Turno %d\n", i);
+        mostrarTableroOculto();
+        mostrarMano();
+        usarCarta();
+        if (Total_Barcos == 0){
+            printf("Ganaste, has hundido todos los barcos\n");
+            mostrarTablero();
+            break;
+        } 
+    }
+
+    mostrarTablero();
+    liberarTablero(tamano_global);
+
+        // inicializarTablero (Retorno_Matriz());
+        // colocarBarcosAleatoriamente();
+        // mostrarTablero();
+        // printf("\n");
+        // mostrarTableroOculto();
+        // printf("\n");
+        // liberarTablero(tamano_global);
     
     return 0;
 }

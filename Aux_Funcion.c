@@ -57,14 +57,17 @@ int Largo_Arreglo(){
 int Retorno_Matriz(){
     if (Dificultad_Tablero == 1){
         Turnos = 30;
+        Total_Barcos = 5; 
         return 11;
     }
     else if (Dificultad_Tablero == 2){
         Turnos = 25;
+        Total_Barcos = 7; 
         return 17;
     }
     else{
         Turnos = 15;
+        Total_Barcos = 9; 
         return 21;
     }   
 }

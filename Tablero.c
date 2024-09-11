@@ -31,6 +31,22 @@ void mostrarTablero() {
     }
 }
 
+void mostrarTableroOculto() {
+    for (int i = 0; i < tamano_global; i++) {
+        for (int j = 0; j < tamano_global; j++) {
+            char celda = *(char *)tablero[i][j];
+            if (celda == 'B') {
+                // Oculta los barcos mostrando un espacio en blanco
+                printf("| ");
+            } else {
+                // Muestra el contenido de la celda
+                printf("|%c", celda);
+            }
+        }
+        printf("|\n");  // Barra final para la última columna y nueva línea después de cada fila
+    }
+}
+
 void modificarCelda(int x, int y, char nuevoContenido) {
     int fila = x - 1;
     int columna = y - 1;

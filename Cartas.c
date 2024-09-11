@@ -8,6 +8,7 @@
 
 int Arreglo_mano[5];
 int Pos_mano;
+int Total_Barcos;
 
 void * disparoSimple (int x , int y ){ // 1
     

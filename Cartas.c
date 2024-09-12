@@ -111,6 +111,7 @@ void * disparoLineal (int x , int y ){ // 3
     free(Mov_x);
     free(Mov_y); 
     return generarCarta_Lineal(); 
+    
 }
 /* Si se encuentra un espacio vacio o uno marcado como fallo se cambia la casilla a fallo
 en caso de acertar al barco marco E de Encontrado, para que el usuario sepa que ahi se encuentra un barco. Ocupa un array con las coordenadas
@@ -141,9 +142,10 @@ void * disparoRadar (int x , int y ){ // 4
         }
     }
 
+    
     free(Mov_x);
-    free(Mov_y);
-    return generarCarta_Radar(); 
+    free(Mov_y); 
+    return generarCarta_Radar();
 }
 /* Si se encuentra un espacio vacio o uno marcado como fallo se cambia la casilla a fallo
 en caso de acertar al barco marco X y bajo el total de barcos. Ocupa un array con las coordenadas

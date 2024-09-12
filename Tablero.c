@@ -117,7 +117,6 @@ void colocarBarco(int x, int y, int largo, int orientacion, char simbolo) {
         else if (orientacion == 3) modificarCelda(x, y + i, simbolo);  // Abajo
         else if (orientacion == 4) modificarCelda(x, y - i, simbolo);  // Arriba
     }
-    printf("barcos totales %d\n", Total_Barcos);
 }
 /* Dependiendo de los rangos que signficia de que tipo de barco es, el puntero a int barcos, son las dirrecciones
 el tamaño aray es para saber cuantos barcos hay que poner

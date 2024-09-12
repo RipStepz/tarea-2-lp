@@ -6,7 +6,11 @@
 #include "Tablero.h"
 
 int Turnos;
-
+/* Esta funcion retorna un arreglo que su largo depende de la dificultad
+Este arreglo se llena de numeros del 1 al 4 aleatoreamente que represetan las 4 dirrecciones
+en las que se puede poner un barco
+no recibe parametros ni retorna nada
+*/
 int* ArregloAleatorio(){
 
     int tamaño;
@@ -53,7 +57,12 @@ int Largo_Arreglo(){
     return 0;
     
 }
+/* Esta funcion se usa para primero Guardar en una varieble global la
+cantidad de turnos que tendra el juego dependiendo de la dificultad elegida
 
+no recibe parametros y retorna el tamaño del tablero dependiendo de la dificultar
+(usado para inicializar el tablero)
+*/
 int Retorno_Matriz(){
     if (Dificultad_Tablero == 1){
         Turnos = 30;
@@ -69,7 +78,12 @@ int Retorno_Matriz(){
         return 21;
     }   
 }
+/* Esta funcion se usa para primero Guardar en una varieble global la
+cantidad de turnos que tendra el juego dependiendo de la dificultad elegida
 
+no recibe parametros y retorna el tamaño del tablero dependiendo de la dificultar
+(usado para inicializar el tablero)
+*/
 int* Rangos_Arreglo(){
 
      int rango_1 , rango_2 , rango_3 , rango_4;
@@ -93,7 +107,11 @@ int* Rangos_Arreglo(){
   
     return arreglo;
 }
-
+/*Simplente retorna true si las coordenadas estan dentro del tablero o no
+usado para control de errores
+recibe como parametro las coordenadas (x,y) y retorna 1 (true) en caso de estar en rango
+0 (false) en caso de no estarlo
+*/
 int En_Rango(int x, int y){
 
     if (x < 1 || x > tamano_global || y < 1 || y > tamano_global){
@@ -103,7 +121,10 @@ int En_Rango(int x, int y){
         return 1;
     }
 }
-
+/* Genera de manera semialeatoria la nueva carta dependiendo de
+las condiciones de DisparoSimple
+no recibe parametros ni retorna nada
+*/
 int *generarCarta_Simple() {
     
     int numero_aleatorio;
@@ -125,7 +146,10 @@ int *generarCarta_Simple() {
         return retorno;
     }
 }
-
+/* Genera de manera semialeatoria la nueva carta dependiendo de
+las condiciones de DisparoGrande
+no recibe parametros ni retorna nada
+*/
 int *generarCarta_Grande() {
     
     int numero_aleatorio;
@@ -150,7 +174,10 @@ int *generarCarta_Grande() {
         return retorno;
     }
 }
-
+/* Genera de manera semialeatoria la nueva carta dependiendo de
+las condiciones de DisparoLineal
+no recibe parametros ni retorna nada
+*/
 int *generarCarta_Lineal() {
     
     int numero_aleatorio;
@@ -175,7 +202,10 @@ int *generarCarta_Lineal() {
         return retorno;
     }
 }
-
+/* Genera de manera semialeatoria la nueva carta dependiendo de
+las condiciones de DisparoRadar
+no recibe parametros ni retorna nada
+*/
 int *generarCarta_Radar() {
     int numero_aleatorio;
     int *retorno = malloc(sizeof(int));

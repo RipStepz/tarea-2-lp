@@ -8,6 +8,7 @@
 void *** tablero = NULL;
 int tamano_global = 0;
 
+// Esta funcion recibe de parametro tamano, que es el tamaño del tablero, no retorna nada y inicia el tablero, con espacios en blanco
 void inicializarTablero(int tamano) {
     tamano_global = tamano;
 
@@ -21,7 +22,10 @@ void inicializarTablero(int tamano) {
         }
     }
 }
-
+/*
+Muestra el tablero como una matriz y mostrando los barcos.
+no recibe parametros, ni retorna nada
+*/
 void mostrarTablero() {
     for (int i = 0; i < tamano_global; i++) {
         for (int j = 0; j < tamano_global; j++) {
@@ -31,6 +35,10 @@ void mostrarTablero() {
     }
 }
 
+/*
+Muestra el tablero como una matriz ocultando los barcos.
+no recibe parametros, ni retorna nada
+*/
 void mostrarTableroOculto() {
     for (int i = 0; i < tamano_global; i++) {
         for (int j = 0; j < tamano_global; j++) {
@@ -46,7 +54,11 @@ void mostrarTableroOculto() {
         printf("|\n");  // Barra final para la última columna y nueva línea después de cada fila
     }
 }
-
+/*
+Recibe como parametro una coordenada en x otra en y el caracter a insertar en el tablero
+Ya que el tablero es un arreglo, se le resta uno a la fila y columna, para que las coordenadas
+(1,1) sean las primeras
+*/
 void modificarCelda(int x, int y, char nuevoContenido) {
     int fila = x - 1;
     int columna = y - 1;
@@ -58,7 +70,10 @@ void modificarCelda(int x, int y, char nuevoContenido) {
     }
 }
 
-// Función auxiliar para verificar si el espacio está disponible para colocar el barco
+    /*Función auxiliar para verificar si el espacio está disponible para colocar el barco y no haya colicion
+    Recibe como parametro la coordenada de donde nace el barco osea (x,y), el largo del barco a insertar y su orientacion
+    no retorna nada
+    */ 
 int verificarEspacioDisponible(int x, int y, int largo, int orientacion) {
     for (int i = 0; i < largo; i++) {
         int fila = x - 1, columna = y - 1;
@@ -80,6 +95,10 @@ int verificarEspacioDisponible(int x, int y, int largo, int orientacion) {
     return 1;  // Espacio disponible
 }
 
+/* Coloca los barcos en una de las cuatro orientaciones
+    Recibe como parametro la coordenada de donde nace el barco osea (x,y), el largo del barco a insertar y su orientacion
+    no retorna nada
+*/ 
 void colocarBarco(int x, int y, int largo, int orientacion, char simbolo) {
     // Sigue intentando hasta encontrar un espacio disponible
     while (!verificarEspacioDisponible(x, y, largo, orientacion)) {
@@ -100,9 +119,12 @@ void colocarBarco(int x, int y, int largo, int orientacion, char simbolo) {
     }
     printf("barcos totales %d\n", Total_Barcos);
 }
-
+/* Dependiendo de los rangos que signficia de que tipo de barco es, el puntero a int barcos, son las dirrecciones
+el tamaño aray es para saber cuantos barcos hay que poner
+    no recibe parametros ni retorna nada
+*/ 
 void colocarBarcosAleatoriamente() {
-    int* barcos = ArregloAleatorio(1);
+    int* barcos = ArregloAleatorio();
     int * Rangos = Rangos_Arreglo();
     int Tamaño_Array = Largo_Arreglo();
     srand(time(NULL));
@@ -126,7 +148,9 @@ void colocarBarcosAleatoriamente() {
     free(barcos);
     free(Rangos);
 }
-
+/* Libera la memoria del tablero
+    no recibe parametros ni retorna nada
+*/ 
 void liberarTablero() {
     for (int i = 0; i < tamano_global; i++) {
         for (int j = 0; j < tamano_global; j++) {

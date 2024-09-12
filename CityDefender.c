@@ -8,6 +8,11 @@
 
 int Dificultad_Tablero;
 
+/*Controla la logica general del juego, llamando a las funciones principales
+se encarga de seleccion de dificultad, blucle para el juego y este termina
+si se acaban los turnos o ganas
+no recibe parametros ni retrona nada
+*/
 int main(){
 
     printf("Selecciona la Dificultad:\n");
@@ -31,8 +36,8 @@ int main(){
     for (int i = 1; i <= Turnos; i++){
         printf("Turno %d\n", i);
         mostrarTablero();
-        mostrarTableroOculto();
-        //mostrarMano();
+        //mostrarTableroOculto();
+        mostrarMano();
         usarCarta();
         printf("Quedan %d barcos \n", Total_Barcos);
         if (Total_Barcos == 0){

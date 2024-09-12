@@ -8,6 +8,7 @@ extern int Arreglo_mano[];
 extern int Pos_mano;
 extern int Turnos;
 extern int Total_Barcos;
+extern int Romper_Probabilidad_500kg;
 
 void inicializarTablero (int tamano ) ;
 void mostrarTablero () ;
